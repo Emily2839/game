@@ -1,0 +1,10 @@
+# ninja log v5
+2	262	7320885428730710	build.ninja	e1ddc226093e72da
+1	214	7320885428730710	build.ninja	e1ddc226093e72da
+50	996	7320960354724127	CMakeFiles/Game_c__.dir/character/character.cpp.obj	77939fa7e8c9d
+20	1203	7320960357465190	CMakeFiles/Game_c__.dir/enemy/enemy.cpp.obj	7626f087a6adfc80
+5	1405	7320960359461601	CMakeFiles/Game_c__.dir/main.cpp.obj	6d8226b0c5848801
+32	1484	7320960360254165	CMakeFiles/Game_c__.dir/player/player.cpp.obj	433b271655e2f26a
+82	1876	7320960364163941	CMakeFiles/Game_c__.dir/combat/combat.cpp.obj	75d849b50ec465f2
+6	1538	7320960581460782	CMakeFiles/Game_c__.dir/combat/combat.cpp.obj	75d849b50ec465f2
+1539	1903	7320960585081860	Game_c__.exe	f0b6420feff6db3a
