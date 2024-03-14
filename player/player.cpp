@@ -35,12 +35,14 @@ void Player::takeDamage(int damage) {
 void Player::flee(vector<Enemy *> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
     Enemy *fastestEnemy = enemies[0];
-    bool fleed = false;
+    bool fleed;
+    fleed = false;
     if (this->getSpeed() > fastestEnemy->getSpeed()) {
         fleed = true;
     } else {
         srand(time(NULL));
-        int chance = rand() % 100;
+        int chance;
+        chance = rand() % 100;
         cout << "chance: " << chance << endl;
         fleed = chance > 99;
     }
@@ -103,6 +105,9 @@ Action Player::takeAction(vector<Enemy *> enemies) {
             //1.
             myAction.action = [this, target]() {
                 doAttack(target);
+
+
+
             };
             break;
         case 2:

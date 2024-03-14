@@ -6,7 +6,8 @@
 #define GAME_C_CHARACTER_H
 #include <string>
 #include "../Combat/Action.h"
-
+#define RED = "\033[31m";
+#define RESET = "\033[0m";11
 using namespace std;
 
 class Character {

@@ -7,7 +7,6 @@
 #include "..//player/player.h"
 #include "Enemy.h"
 
-
 using namespace std;
 
 //TODO: Check the circular dependency
@@ -53,11 +52,19 @@ Action Enemy::takeAction(vector<Player *> player) {
     Action myAction;
     myAction.speed = getSpeed();
     myAction.subscriber = this;
+
     Character* target = getTarget(std::move(player));
-    myAction.target = target;
-    myAction.action = [this, target]() {
-        doAttack(target);
-    };
+    if (this->getHealth()< 9){
+        myAction.action = [this, target]() {
+            cout << "El enemigo escapo" << endl;
+            this->fleed = true;
+        };
+    } else {
+        myAction.target = target;
+        myAction.action = [this, target]() {
+            doAttack(target);
+        };
+    }
 
     return myAction;
 }

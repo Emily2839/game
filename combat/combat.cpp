@@ -11,6 +11,7 @@ bool compareSpeed(Character *a, Character *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
+// CONSTRUCTORES -- INICIA
 Combat::Combat(vector<Character *> _participants) {
     participants = std::move(_participants);
     for(auto participant: participants) {
@@ -31,6 +32,7 @@ Combat::Combat(vector<Player*> _teamMembers, vector<Enemy*> _enemies) {
 Combat::Combat() {
     participants = vector<Character*>();
 }
+// CONSTRUCTORES -- INICIA
 
 void Combat::addParticipant(Character *participant) {
     participants.push_back(participant);
@@ -87,9 +89,15 @@ void Combat::executeActions() {
         Action currentAction = actions.top();
         currentAction.action();
         checkForFlee(currentAction.subscriber);
-        checkParticipantStatus(currentAction.subscriber);
-        checkParticipantStatus(currentAction.target);
-        actions.pop();
+        if (currentAction.target != nullptr) {
+            checkParticipantStatus(currentAction.subscriber);
+            checkParticipantStatus(currentAction.target);
+            actions.pop();
+        } else {
+            while (!actions.empty()) {
+                actions.pop();
+            }
+        }
     }
 }
 
