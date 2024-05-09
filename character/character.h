@@ -12,7 +12,7 @@ using namespace std;
 
 class Character {
 protected:
-    string name;
+    char name[30];
     int health;
     int attack;
     int defense;
@@ -21,13 +21,13 @@ protected:
     bool fleed;
 
 public:
-    Character(string, int, int, int, int, bool);
+    Character(char*, int, int, int, int, bool);
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
 
-    void setName(string);
-    string getName();
+    void setName(char*);
+    char* getName();
     void setHealth(int);
     int getHealth();
     void setAttack(int);
