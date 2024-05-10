@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.27)
 project(Game_c__)
 
 set(CMAKE_CXX_STANDARD 14)
+include_directories(character)
+include_directories(enemy)
+include_directories(player)
+include_directories(combat)
 
 add_executable(Game_c__ main.cpp
 
@@ -14,5 +18,5 @@ add_executable(Game_c__ main.cpp
         combat/combat.h
         character/character.cpp
         character/character.h
-        combat/action.h
+
 )

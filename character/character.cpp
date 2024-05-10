@@ -15,6 +15,9 @@ Character::Character(char* _name, int _health, int _attack, int _defense, int _s
     speed = _speed;
     isPlayer = _isPlayer;
     fleed = false;
+    strcpy_s(arm, _arm);
+    experience = _experience;
+    level = _level;
 }
 
 void Character::setName(char* _name) {
@@ -57,7 +60,7 @@ int Character::getSpeed() {
     return speed;
 }
 
-string Character::toString() {
+char Character::toString() {
     return "Name: " + string(name) + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
 }
 
@@ -67,4 +70,19 @@ bool Character::getIsPlayer() {
 
 bool Character::hasFleed() {
     return fleed;
+    void Character::setArm(char _arm[20]) {
+        strcpy_s(arm, _arm);
+    }
+
+    char* Character::getArm() {
+        return arm;
+    }
+
+    int Character::getExperience() {
+        return experience;
+    }
+
+    int Character::getLevel() {
+        return level;
+
 }

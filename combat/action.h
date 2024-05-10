@@ -1,7 +1,7 @@
 //
 // Created by Emanuel on 13/03/2024.
 //
-
+#include <functional>
 #ifndef GAME_C___ACTION_H
 #define GAME_C___ACTION_H
 #include<functional>

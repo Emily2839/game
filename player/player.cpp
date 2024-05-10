@@ -13,18 +13,9 @@ bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(char* name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense,
-                                                                                        speed, true) {
-
-    experience = 0;
-    level = 1;
+Player::Player(char* name, int health, int attack, int defense, int speed, char arm[20], int experience, int level) : Character(name, health, attack, defense,
+                                                                                                                       speed, true, arm, experience, level) {
 }
-
-
-
-
-
-
 
 void Player::doAttack(Character *target) {
     int rolledAttack = getRolledAttack(getAttack());
@@ -43,7 +34,7 @@ void Player::takeDamage(int damage) {
 void Player::flee(vector<Enemy *> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
     Enemy *fastestEnemy = enemies[0];
-    bool fleed;
+   bool fleed;
     fleed = false;
     if (this->getSpeed() > fastestEnemy->getSpeed()) {
         fleed = true;
@@ -52,7 +43,10 @@ void Player::flee(vector<Enemy *> enemies) {
         int chance;
         chance = rand() % 100;
         cout << "chance: " << chance << endl;
-        fleed = chance > 99;
+        fleed = chance > 90;{
+            fleed = true;
+            cout << "You can't be fleed, fight" << endl;
+        }
     }
 
     this->fleed = fleed;
@@ -61,6 +55,47 @@ void Player::flee(vector<Enemy *> enemies) {
 void Player::emote() {
     cout << "Jokes on you" << endl;
 }
+
+Character* Player::getTarget(vector<Enemy *> enemies) {
+    cout << "Choose a target" << endl;
+    int targetIndex = 0;
+    for(int i = 0; i < enemies.size(); i++) {
+        cout << i << ". " << enemies[i]->getName() << endl;
+    }
+    cin >> targetIndex;
+
+    return enemies[targetIndex];
+}
+
+
+void Player::gainExperience(Enemy* enemy) {
+    // Sber si el enemigo murio para tomar su experiencia
+    if (enemy && enemy->health <= 0) {
+        // Sumar la experiencia obtenida por derrotar al enemigo
+        experience += enemy->experience;
+        // Llamar a la función LevelUp para manejar el nivel y la experiencia restante
+        LevelUp();
+    }
+}
+void Player::LevelUp() {
+    // Saber si el jugador tiene 100 o mas de experiencia para aumentar el Level
+    while (experience >= 100) {
+        level++;
+        // Reiniciar
+        experience -= 100;
+
+// Atributos aumentados
+        int healthGain = 10;
+        int attackGain = 5;
+        int defenseGain = 5;
+        health += healthGain;
+        attack += attackGain;
+        defense += defenseGain;
+        // Puntos ganados TOTAL
+        int totalPointsGained = healthGain + attackGain + defenseGain;
+        }
+
+    }
 
 void Player::levelUp() {
     level++;
@@ -98,11 +133,9 @@ Action Player::takeAction(vector<Enemy *> enemies) {
     cin >> option;
     Character *target = nullptr;
 
-    //Esta variable guarda
-    //1. Que voy a hacer?
-    //2. Con que velocidad/prioridad?
+
     Action myAction;
-    //2.
+
     myAction.speed = this->getSpeed();
     myAction.subscriber = this;
 
@@ -113,8 +146,6 @@ Action Player::takeAction(vector<Enemy *> enemies) {
             //1.
             myAction.action = [this, target]() {
                 doAttack(target);
-
-
 
             };
             break;

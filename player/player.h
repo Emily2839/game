@@ -26,19 +26,17 @@ public:
 
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
+    void gainExperience(Enemy* enemy);
+
     char* serialize();
     static const unsigned int BUFFER_SIZE = sizeof (name) + sizeof (health) + sizeof (attack) + sizeof (defense) + sizeof (speed) + sizeof (isPlayer) + sizeof (experience) + sizeof (level);
-
-    static Player * unserializer(char* buffer);
+    //Funcion para que aumente su nivel//
+    void LevelUp();
 
     Character * getTarget(vector<Enemy*> enemies);
-
     void flee(vector<Enemy*> enemies);
     void emote();
-    void levelUp();
-    void gainExperience(int);
 
-    //Podemos hacer que este vector sea polimorfico?
     Action takeAction(vector<Enemy*> enemies);
 
 private:
