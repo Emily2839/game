@@ -3,9 +3,10 @@
 //
 #include "Player.h"
 #include <iostream>
-#include "../Utils.h"
 #include <algorithm>
+#include "../Utils.h"
 
+using namespace std;
 using namespace combat_utils;
 
 bool compareSpeed(Enemy *a, Enemy *b) {
@@ -14,9 +15,16 @@ bool compareSpeed(Enemy *a, Enemy *b) {
 
 Player::Player(char* name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense,
                                                                                         speed, true) {
+
     experience = 0;
     level = 1;
 }
+
+
+
+
+
+
 
 void Player::doAttack(Character *target) {
     int rolledAttack = getRolledAttack(getAttack());
@@ -122,3 +130,34 @@ Action Player::takeAction(vector<Enemy *> enemies) {
 
     return myAction;
 }
+
+char* Player::serialize() {
+     char* iterator = buffer;
+
+     memcpy(iterator , name , sizeof name);
+     iterator += sizeof name;
+
+     memcpy(iterator, &health, sizeof health);
+     iterator += sizeof health;
+
+    memcpy(iterator, &attack, sizeof attack);
+    iterator += sizeof attack;
+
+    memcpy(iterator, &defense, sizeof defense);
+    iterator += sizeof defense;
+
+    memcpy(iterator, &speed, sizeof speed);
+    iterator += sizeof speed;
+
+    memcpy(iterator, &isPlayer, sizeof isPlayer);
+    iterator += sizeof isPlayer;
+
+    memcpy(iterator, &experience, sizeof experience);
+    iterator += sizeof experience;
+
+    memcpy(iterator, &level, sizeof level);
+
+    return buffer;
+}
+
+

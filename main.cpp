@@ -25,10 +25,14 @@ int main() {
     combat = new Combat(participants);
     combat->doCombat();
 
+    char* buffer = player->serialize();
+
+
     delete player;
     delete enemy;
     delete enemy2;
-    delete combat;
+    //delete combat;
+
 
     return 0;
 }

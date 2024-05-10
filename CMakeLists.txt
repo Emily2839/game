@@ -13,4 +13,6 @@ add_executable(Game_c__ main.cpp
         combat/combat.cpp
         combat/combat.h
         character/character.cpp
-        character/character.h)
+        character/character.h
+        combat/action.h
+)

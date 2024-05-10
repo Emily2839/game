@@ -108,7 +108,8 @@
 				3,
 				5,
 				7,
-				9
+				9,
+				10
 			]
 		}
 	],
@@ -167,6 +168,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "character/character.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "combat/action.h",
 			"sourceGroupIndex" : 1
 		}
 	],
