@@ -13,7 +13,8 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_executable",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -27,7 +28,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
 				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 8,
 				"parent" : 0
 			}
 		]
@@ -39,6 +64,25 @@
 			[
 				{
 					"fragment" : "-g -std=gnu++14 -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 2,
+					"path" : "C:/Game c++/character"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Game c++/enemy"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Game c++/player"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Game c++/combat"
 				}
 			],
 			"language" : "CXX",
@@ -108,8 +152,7 @@
 				3,
 				5,
 				7,
-				9,
-				10
+				9
 			]
 		}
 	],
@@ -168,11 +211,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "character/character.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "combat/action.h",
 			"sourceGroupIndex" : 1
 		}
 	],

@@ -14,19 +14,19 @@ using namespace std;
 
 class Character {
 protected:
-    char name[30];
+    char name[30] = {'D','e','v','o','i','d'};
     int health;
     int attack;
     int defense;
     int speed;
     bool isPlayer;
     bool fleed;
-    char arm[20];
-    int experience;
-    int level;
+    int experience = 10;
+    int level = 1;
+
 
 public:
-    Character(char*, int, int, int, int, bool, char[20], int, int );
+    Character(char[40], int, int, int, int, bool ); //como se declaran? como se heredan?
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
@@ -41,13 +41,14 @@ public:
     int getDefense();
     void setSpeed(int);
     int getSpeed();
-    char toString();
+    string toString();
     bool getIsPlayer();
     bool hasFleed();
-    void setArm(char[20]);
-    char* getArm();
-    int getExperience();
     int getLevel();
+    int getExperience();
+
+
+    string getStringName();
 };
 
 

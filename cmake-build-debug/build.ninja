@@ -52,30 +52,35 @@ build cmake_object_order_depends_target_Game_c__: phony || CMakeFiles/Game_c__.d
 build CMakeFiles/Game_c__.dir/main.cpp.obj: CXX_COMPILER__Game_c___unscanned_Debug C$:/Game$ c++/main.cpp || cmake_object_order_depends_target_Game_c__
   DEP_FILE = CMakeFiles\Game_c__.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Game c++/character" -I"C:/Game c++/enemy" -I"C:/Game c++/player" -I"C:/Game c++/combat"
   OBJECT_DIR = CMakeFiles\Game_c__.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_c__.dir
 
 build CMakeFiles/Game_c__.dir/player/player.cpp.obj: CXX_COMPILER__Game_c___unscanned_Debug C$:/Game$ c++/player/player.cpp || cmake_object_order_depends_target_Game_c__
   DEP_FILE = CMakeFiles\Game_c__.dir\player\player.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Game c++/character" -I"C:/Game c++/enemy" -I"C:/Game c++/player" -I"C:/Game c++/combat"
   OBJECT_DIR = CMakeFiles\Game_c__.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_c__.dir\player
 
 build CMakeFiles/Game_c__.dir/enemy/enemy.cpp.obj: CXX_COMPILER__Game_c___unscanned_Debug C$:/Game$ c++/enemy/enemy.cpp || cmake_object_order_depends_target_Game_c__
   DEP_FILE = CMakeFiles\Game_c__.dir\enemy\enemy.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Game c++/character" -I"C:/Game c++/enemy" -I"C:/Game c++/player" -I"C:/Game c++/combat"
   OBJECT_DIR = CMakeFiles\Game_c__.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_c__.dir\enemy
 
 build CMakeFiles/Game_c__.dir/combat/combat.cpp.obj: CXX_COMPILER__Game_c___unscanned_Debug C$:/Game$ c++/combat/combat.cpp || cmake_object_order_depends_target_Game_c__
   DEP_FILE = CMakeFiles\Game_c__.dir\combat\combat.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Game c++/character" -I"C:/Game c++/enemy" -I"C:/Game c++/player" -I"C:/Game c++/combat"
   OBJECT_DIR = CMakeFiles\Game_c__.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_c__.dir\combat
 
 build CMakeFiles/Game_c__.dir/character/character.cpp.obj: CXX_COMPILER__Game_c___unscanned_Debug C$:/Game$ c++/character/character.cpp || cmake_object_order_depends_target_Game_c__
   DEP_FILE = CMakeFiles\Game_c__.dir\character\character.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Game c++/character" -I"C:/Game c++/enemy" -I"C:/Game c++/player" -I"C:/Game c++/combat"
   OBJECT_DIR = CMakeFiles\Game_c__.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_c__.dir\character
 

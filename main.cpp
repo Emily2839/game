@@ -10,29 +10,29 @@ using namespace std;
 
 int main() {
     cout << "WELCOME. Please write a name for your PLAYER: " << endl;
-    char PlayerName[30];
-    cin.getline(PlayerName, 30);
+    string PlayerName;
+    cin >> PlayerName;
 
     cout << "Write a name for the ENEMY:" << endl;
-    char EnemyName[30];
-    cin.getline(EnemyName, 30);
+    string EnemyName;
+    cin >> EnemyName;
 
-    cout<<"Write an arm for your PLAYER: "<< endl;
-    char PlayerArm [30];
-    cin.getline(PlayerArm, 30);
+    cout<<"Write an weapon for your PLAYER: "<< endl;
+    string PlayerW;
+    cin >> PlayerW;
 
-    cout<<"Write an arm for your ENEMY: "<< endl;
-    char EnemyArm[30];
-    cin.getline(EnemyArm, 30);
-
+    cout<<"Write an weapon for your ENEMY: "<< endl;
+    string EnemyW;
+    cin >> EnemyW;
 
 
     Player *player;
-    player = new Player("Capi", 76, 7, 2, 10, EnemyArm, 10,1);
+    player = new Player("Capi", 76, 7, 2, 10, PlayerW, 10, 1);
     Enemy *enemy;
-    enemy = new Enemy("Trol", 20, 5, 2, 7, PlayerArm, 10, 1);
+    // Enemy(char *name, int health, int attack, int defense, int speed, string *arm, int experience, int level);
+    enemy = new Enemy("Trol", 5, 5, 2, 7, EnemyW, 10, 1);
     Enemy *enemy2;
-    enemy2 = new Enemy("Mo", 30, 4, 2, 2, PlayerArm, 10,1);
+    enemy2 = new Enemy("Mo", 5, 4, 2, 2, EnemyW, 10,1);
 
     vector<Character*> participants;
     participants.push_back(player);
@@ -43,13 +43,12 @@ int main() {
     combat = new Combat(participants);
     combat->doCombat();
 
-    char* buffer = player->serialize();
 
 
     delete player;
     delete enemy;
     delete enemy2;
-    delete combat;
+    //delete combat;
 
 
     return 0;

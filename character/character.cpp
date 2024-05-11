@@ -1,23 +1,19 @@
 //
 // Created by Emanuel on 13/03/2024.
 //
-#include "Character.h"
+#include "character.h"
 #include <cstring>
 #include <sstream>
 #include <iostream>
 
-Character::Character(char* _name, int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
-    if (_name !=nullptr) strcpy(name, _name);
-    strcpy(name, _name);
+Character::Character(char _name[40], int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
+    if (_name != nullptr) strcpy(name, _name);
     health = _health;
     attack = _attack;
     defense = _defense;
     speed = _speed;
     isPlayer = _isPlayer;
     fleed = false;
-    strcpy_s(arm, _arm);
-    experience = _experience;
-    level = _level;
 }
 
 void Character::setName(char* _name) {
@@ -25,6 +21,10 @@ void Character::setName(char* _name) {
 }
 
 char* Character::getName() {
+    return name;
+}
+
+string Character::getStringName() {
     return name;
 }
 
@@ -60,8 +60,8 @@ int Character::getSpeed() {
     return speed;
 }
 
-char Character::toString() {
-    return "Name: " + string(name) + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
+string Character::toString() {
+    return "Name: " + this->getStringName() + "\nHealth: " + to_string(health) + "\nAttack: " + to_string(attack) + "\nDefense: " + to_string(defense) + "\nSpeed: " + to_string(speed);
 }
 
 bool Character::getIsPlayer() {
@@ -70,19 +70,13 @@ bool Character::getIsPlayer() {
 
 bool Character::hasFleed() {
     return fleed;
-    void Character::setArm(char _arm[20]) {
-        strcpy_s(arm, _arm);
-    }
-
-    char* Character::getArm() {
-        return arm;
-    }
-
-    int Character::getExperience() {
-        return experience;
-    }
-
-    int Character::getLevel() {
-        return level;
-
 }
+
+int Character::getExperience() {
+    return experience;
+}
+
+int Character::getLevel() {
+    return level;
+}
+

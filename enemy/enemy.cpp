@@ -4,8 +4,7 @@
 #include "../enemy/enemy.h"
 #include "../character/character.h"
 #include <iostream>
-#include "..//player/player.h"
-#include "Enemy.h"
+#include "../player/player.h"
 
 using namespace std;
 
@@ -16,8 +15,10 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 //Constructor de enemy
-Enemy::Enemy(char* name, int health, int attack, int defense, int speed , char arm[20], int experience, int level) : Character(name, health, attack, defense, speed, false){
-
+Enemy::Enemy(char name[30], int health, int attack, int defense,int speed, string arm, int _experience, int _level) : Character(name, health, attack, defense, speed, false){
+    maxHealth = health;
+    experience = _experience;
+    level = _level;
 }
 
 void Enemy::doAttack(Character *target) {

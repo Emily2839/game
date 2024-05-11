@@ -5,7 +5,7 @@
 #ifndef GAME_C_COMBAT_H
 #define GAME_C_COMBAT_H
 #pragma once
-#include "../Character/Character.h"
+#include "../character/character.h"
 #include "../Player/Player.h"
 #include "../Enemy/Enemy.h"
 #include "Action.h"
@@ -42,7 +42,7 @@ public:
     void doCombat();
     string participantsToString();
 
-    void inscreaseEnemyStats(int points);
+    void increaseEnemyStats(int points);
 };
 
 
