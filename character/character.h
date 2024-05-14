@@ -8,14 +8,15 @@
 #include "../Combat/Action.h"
 #include <vector>
 #include <cstring>
-#define RED = "\033[31m";
-#define RESET = "\033[0m";11
+#define RED  "\033[31m"
+#define RESET  "\033[0m"
 using namespace std;
 
 class Character {
 protected:
     char name[30] = {'D','e','v','o','i','d'};
     int health;
+    int maxHealth;
     int attack;
     int defense;
     int speed;
@@ -23,6 +24,7 @@ protected:
     bool fleed;
     int experience = 10;
     int level = 1;
+    string arm = "nothing";
 
 
 public:
@@ -33,6 +35,7 @@ public:
 
     void setName(char*);
     char* getName();
+    string getStringName();
     void setHealth(int);
     int getHealth();
     void setAttack(int);
@@ -47,8 +50,8 @@ public:
     int getLevel();
     int getExperience();
 
-
-    string getStringName();
+    void setArm(string);
+    string getArm();
 };
 
 

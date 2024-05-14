@@ -9,6 +9,7 @@
 Character::Character(char _name[40], int _health, int _attack, int _defense, int _speed, bool _isPlayer) {
     if (_name != nullptr) strcpy(name, _name);
     health = _health;
+    maxHealth = health;
     attack = _attack;
     defense = _defense;
     speed = _speed;
@@ -78,5 +79,13 @@ int Character::getExperience() {
 
 int Character::getLevel() {
     return level;
+}
+
+void Character::setArm(string _arm) {
+    arm = _arm;
+}
+
+string Character::getArm() {
+    return arm;
 }
 

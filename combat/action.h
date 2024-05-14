@@ -15,11 +15,13 @@ struct Action {
     Character* target = nullptr;
     std::function<void(void)> action = nullptr;
 
-    Action(std::function<void(void)> _action, int _speed, Character* _subscriber, Character* _target) {
+    Action(std::function<void(void)> _action, int _speed, Character* _subscriber, Character* _target, Character* _level, Character* _experience) {
         action = _action;
         speed = _speed;
         subscriber = _subscriber;
         target = _target;
+        level = _level;
+        experience = _experience;
     }
     Action(){};
 
@@ -27,6 +29,9 @@ struct Action {
     {
         return this->speed < p.speed;
     }
+
+    Character *level;
+    Character *experience;
 };
 
 #endif //GAME_C___ACTION_H

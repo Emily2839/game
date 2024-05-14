@@ -15,8 +15,9 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 //Constructor de enemy
-Enemy::Enemy(char name[30], int health, int attack, int defense,int speed, string arm, int _experience, int _level) : Character(name, health, attack, defense, speed, false){
+Enemy::Enemy(char name[30], int health, int attack, int defense, int speed, string _arm, int _experience, int _level) : Character(name, health, attack, defense, speed, false){
     maxHealth = health;
+    arm = _arm;
     experience = _experience;
     level = _level;
 }
@@ -25,17 +26,18 @@ void Enemy::doAttack(Character *target) {
 
     int rolledAttack = getRolledAttack(getAttack());
     int trueDamage = target->getDefense() > rolledAttack ? 0 : rolledAttack - target->getDefense();
-    target->takeDamage(trueDamage);
+    if (target->getHealth() > 0){
+        target->takeDamage(trueDamage);
+    }
 }
 
 void Enemy::takeDamage(int damage) {
     setHealth(getHealth() - damage);
     if(getHealth() <= 0) {
-        cout<<getName()<<" has died"<<endl;
-
+        cout<<getName()<<" Se fue con el gallo de oro..."<<endl;
     }
     else {
-        cout<<getName()<<" has taken " << damage << " damage" << endl;
+        cout<<getName()<<" Ha perdido " << damage << " Loser" << endl;
     }
 }
 
@@ -60,9 +62,9 @@ Action Enemy::takeAction(vector<Player *> player) {
     myAction.subscriber = this;
 
     Character* target = getTarget(std::move(player));
-    if (this->getHealth()< 9){
+    if (this->getHealth() < maxHealth * 0.2){       //Si el enemigo tiene menos de 20% de la vida maxima escapa
         myAction.action = [this, target]() {
-            cout << "El enemigo escapo" << endl;
+            cout << "El enemigo "<< this->getStringName() <<" escapo" << endl;
             this->fleed = true;
         };
     } else {

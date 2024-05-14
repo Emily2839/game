@@ -9,18 +9,29 @@
 using namespace std;
 using namespace combat_utils;
 
+
 bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(char _name[30], int health, int attack, int defense, int speed, string arm,int experience, int level) : Character(name, health, attack, defense, speed, true) {
+Player::Player(char _name[30], int health, int attack, int defense, int speed,  string arm, int experience, int level) : Character(name, health, attack, defense, speed, true) {
+    strcpy(name, _name);
+    experience = 10;
+    level = 1;
+}
 
+Player::Player(string namae, int health, int attack, int defense, int speed,string _arm, int experience, int level) : Character(name, health, attack, defense, speed, true) {
+    strcpy(name, namae.c_str());
+    experience = 10;
+    level = 1;
 }
 
 void Player::doAttack(Character *target) {
     int rolledAttack = getRolledAttack(getAttack());
     int trueDamage = target->getDefense() > rolledAttack ? 0 : rolledAttack - target->getDefense();
-    target->takeDamage(trueDamage);
+    if (target->getHealth() > 0 && !target->hasFleed()){
+        target->takeDamage(trueDamage);
+    }
 }
 
 void Player::takeDamage(int damage) {
@@ -40,15 +51,11 @@ void Player::flee(vector<Enemy *> enemies) {
         fleed = true;
     } else {
         srand(time(NULL));
-        int chance;
-        chance = rand() % 100;
-        cout << "chance: " << chance << endl;
-        fleed = chance > 90;{
-            fleed = true;
-            cout << "You can't be fleed, fight" << endl;
-        }
+        int chance = rand() % 100;
+        cout << "your chance is: " << chance << endl;
+        fleed = chance > 80;
+        cout << "No pudiste huir, lucha!!  >.<" << endl;
     }
-
     this->fleed = fleed;
 }
 
@@ -57,26 +64,32 @@ void Player::emote() {
 }
 
 Character* Player::getTarget(vector<Enemy *> enemies) {
-    cout << "Choose a target" << endl;
     int targetIndex = 0;
-    for(int i = 0; i < enemies.size(); i++) {
-        cout << i << ". " << enemies[i]->getName() << endl;
+    while (true){
+        cout << "\nElige un objetivo" << endl;
+        for(int i = 0; i < enemies.size(); i++) {
+            cout << i + 1 << ". " << enemies[i]->getName() << endl;
+        }
+        cin >> targetIndex;
+        cout <<"\n";
+        if (targetIndex - 1 <= enemies.size() && targetIndex > 0) {
+            break;
+        } else cout << "-Objetivo invalido- \n";
     }
-    cin >> targetIndex;
 
-    return enemies[targetIndex];
+    return enemies[targetIndex-1];
 }
 
 
-void Player::gainExperience(Enemy* enemy) {
+void Player::gainExperience(int newExperience) {
     // Sber si el enemigo murio para tomar su experiencia
-    if (enemy && enemy->getHealth() <= 0) {
+//    if (enemy && enemy->getHealth() <= 0) {
         // Sumar la experiencia obtenida por derrotar al enemigo
-        experience += enemy->getExperience();
+        experience += newExperience;
         // Llamar a la función LevelUp para manejar el nivel y la experiencia restante
         levelUp();
     }
-}
+//}
 
 void Player::levelUp() {
     // Saber si el jugador tiene 100 o mas de experiencia para aumentar el Level
@@ -97,38 +110,42 @@ void Player::levelUp() {
 }
 
 Action Player::takeAction(vector<Enemy *> enemies) {
-    int option = 0;
-    cout << "Choose an action" << endl;
-    cout << "1. Attack" << endl;
-    cout << "2. Flee" << endl;
-    cin >> option;
     Character *target = nullptr;
 
-
     Action myAction;
+    bool pass = false;
 
     myAction.speed = this->getSpeed();
     myAction.subscriber = this;
 
-    switch (option) {
-        case 1:
-            target = getTarget(enemies);
-            myAction.target = target;
-            //1.
-            myAction.action = [this, target]() {
-                doAttack(target);
+    do{
+        int option = 0;
+        cout << "- Elige una accion" << endl;
+        cout << "1. Attack >:)" << endl;
+        cout << "2. Fleed >_<" << endl;
+        cin >> option;
+        switch (option) {
+            case 1:
+                target = getTarget(enemies);
+                myAction.target = target;
+                //1.
+                myAction.action = [this, target]() {
+                    doAttack(target);
 
-            };
-            break;
-        case 2:
-            myAction.action = [this, enemies]() {
-                flee(enemies);
-            };
-            break;
-        default:
-            cout << "Invalid option" << endl;
-            break;
-    }
+                };
+                pass = true;
+                break;
+            case 2:
+                myAction.action = [this, enemies]() {
+                    flee(enemies);
+                };
+                pass = true;
+                break;
+            default:
+                cout << "Opcion invalida \n" << endl;
+                break;
+        }
+    } while (!pass);
 
     return myAction;
 }
